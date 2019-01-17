@@ -1,1 +1,20 @@
+﻿Automatic Email Sender
+This task was automated with use of python3 and a fews library such as smtplib, email, os, Googleapiclient
+The code used to get data from Gmail was under fair use in google api page(minor adjustments)
+ 
 
+Pour simplifier et automatiser l'envoi des emplois du temps aux étudiants, ce script fait une recherche dans le repertoire où sont 
+stockés les fichiers pdf enregistre leurs paramétres afin de vérifier s'ils ont changè à chaque heure aprés le demarage du PC.
+
+Il sufit de changer :
+	-Les adresses du repertoire où se trouve les fichers pdf (body.py/Script.py)
+	-L'adresse du repertoire où seront stockés les fichers CSV(database: Comma Separated Values) (	body.py/Script.py):	
+			*Les fichiers csv portant le nom des classes doivent contenir les adresses email des etudiants Inscrit dans
+			 chaque classe. en suivant le format dans"\email sender\CSV\example.csv". Chaque adresse sur une ligne.
+			*un google forms pour requeillir les adresses e-mails des etudiants a etait crée sur ce lien :
+			-https://docs.google.com/forms/d/e/1FAIpQLSf028GWXpW0Abroord7rMPeOkJWhwqLvaZHzBV4E-28m7_DSw
+			Le script Forms_to_csv permet de telecharger le google forms .xlsx et de le transformer en .csv utilisable par le 
+			script "Script.py"
+	-L'adresse email de l'ecole et le mot de passe ( Pour des raisons de securité il est préferable d'entrer le mot de passe au debut
+ 	de chaque session lors du demarrage de l'ordinateur.)
+	(Il est preferable de garder l'adresse email essat.gabes.uni@gmail.com et de changer le mot de 	passe qui est 'Password-01') (body.py)
