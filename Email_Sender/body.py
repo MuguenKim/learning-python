@@ -1,19 +1,19 @@
-import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-import csv
-import os
-import re
-import datetime
+from forms_to_csv import Forms_to_csv, check_if_new_emails
+import csv, time, os, re, datetime, smtplib
+
 #Variable a changer
 email_user = 'essat.gabes.uni@gmail.com'
-
-csv_location="E:/python script/email sender/CSV/"
-files_location="E:/python script/email sender/Files/"
+forms_csv_name = "google_forms.csv"
+csv_location="E:/python script/learning-python/Email_Sender/CSV/"
+files_location="E:/python script/learning-python/Email_Sender/Files/"
 email_password="Password-01"
 #email_password = input("Enter le mot de passe de l'adresse email: \n"+email_user+"\n")
+
+
 
 def makecsv(files_location,csv_location):
 	#make CSV file for all the files
@@ -115,3 +115,30 @@ def send(email_send, file_name,subject):
 	server.sendmail(email_user,email_send,text)
 	server.quit()
 #send(email_send,file_name)
+
+
+if not os.path.isfile(csv_location+"files.csv"):
+	print("no file here")
+	makecsv(files_location, csv_location)
+
+Forms_to_csv(csv_location,forms_csv_name)
+
+while True:
+	check_if_new_emails(csv_location, forms_csv_name, "new_google_forms.csv")
+	new_files_path = check()
+	if new_files_path != False:
+		print("il existe "+str(len(new_files_path))+" nouveau(x) element(s)")
+		class_names = get_class(new_files_path)
+		for element in class_names:
+			subject = 'Emploi du temps pour '+element
+			print(subject)
+			emails = get_address(element)
+			file_name =element+".pdf"
+			print(file_name)
+			send(emails,file_name,subject)
+	
+		
+	else:
+		print('No new files. Another check will be done in one hour.')
+	makecsv(files_location,csv_location)
+	time.sleep(3600)
