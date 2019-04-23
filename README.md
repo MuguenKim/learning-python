@@ -9,7 +9,7 @@ listen for changes in files and send the schedual to the conserned students.
 
 ## What i learned:
 
-useing csv files as database
-Google Drive api
-From exel to CSV
-Send e-mail with python
+- useing csv files as database
+- Google Drive api
+- From exel to CSV
+- Send e-mail with python
